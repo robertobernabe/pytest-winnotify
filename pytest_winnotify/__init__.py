@@ -40,7 +40,18 @@ def pytest_terminal_summary(terminalreporter):
         msg = "%s Passed %s Failed" % (passes, fails)
         msgIcon = WinTrayIcon.MSG_WARNING
     else:
-        msg = "%s Passed %s Failed %s Errors %s Skipped" % (passes, fails, errors, skips)
+        msg = "%s Passed %s Failed %s Errors %s Skipped" % (
+            passes, fails, errors, skips)
         msgIcon = WinTrayIcon.MSG_ERROR
     assert isinstance(terminalreporter.config.winnotifier, WinTrayIcon)
-    terminalreporter.config.winnotifier.balloon_tip("py.test", msg, icon=msgIcon)
+    terminalreporter.config.winnotifier.balloon_tip(
+        "py.test", msg, icon=msgIcon)
+
+
+def pytest_unconfigure(config):
+    """called before test process is exited.
+    """
+    if not config.option.winnotify:
+        return
+    time.sleep(2)
+    config.winnotifier.close()
