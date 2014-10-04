@@ -51,7 +51,6 @@ def pytest_terminal_summary(terminalreporter):
 def pytest_unconfigure(config):
     """called before test process is exited.
     """
-    if not config.option.winnotify:
-        return
-    time.sleep(2)
-    config.winnotifier.close()
+    if hasattr(config, "winnotifier"):
+        time.sleep(1)
+        config.winnotifier.close()
