@@ -3,8 +3,11 @@ pytest-winnotify
 Windows notify support for py.test
 Requirements: pywin32
 """
+import pkg_resources
 import time
-from .winnotify import WinTrayIcon
+from pytest_winnotify.winnotify import WinTrayIcon
+
+ICON_FILEPATH = pkg_resources.resource_filename(__name__, "pytest.ico")
 
 
 def pytest_addoption(parser):
@@ -18,7 +21,8 @@ def pytest_addoption(parser):
 
 def pytest_sessionstart(session):
     if session.config.option.winnotify:
-        setattr(session.config, "winnotifier", WinTrayIcon("py.test"))
+        setattr(session.config, "winnotifier",
+                WinTrayIcon("py.test", iconFilePath=ICON_FILEPATH))
         assert isinstance(session.config.winnotifier, WinTrayIcon)
         session.config.winnotifier.balloon_tip("py.test", "Running tests...")
 
