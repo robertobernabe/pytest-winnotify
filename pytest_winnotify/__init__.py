@@ -4,7 +4,7 @@ Windows notify support for py.test
 Requirements: pywin32
 """
 import time
-from winnotify import WinTrayIcon
+from .winnotify import WinTrayIcon
 
 
 def pytest_addoption(parser):
