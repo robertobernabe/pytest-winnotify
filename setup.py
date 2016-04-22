@@ -4,7 +4,7 @@ from setuptools import setup
 
 if __name__ == "__main__":
     setup(
-        name='pytest-winnotify', version='0.3.0',
+        name='pytest-winnotify', version='0.4.0',
         description='Windows tray notifications for py.test results.',
         author='Florian Schaeffeler',
         author_email="florian.schaeffeler@gmail.com",

@@ -1,4 +1,3 @@
-# from win32api import *
 from win32gui import (
     NIIF_INFO, NIIF_ERROR, NIIF_WARNING, WNDCLASS, GetModuleHandle,
     LoadCursor, RegisterClass, CreateWindow, UpdateWindow, LoadImage,
@@ -6,7 +5,6 @@ from win32gui import (
     NIM_MODIFY, DestroyWindow, UnregisterClass, NIM_DELETE, PostQuitMessage)
 import win32con
 import os
-# import struct
 
 
 class WinTrayIcon(object):
